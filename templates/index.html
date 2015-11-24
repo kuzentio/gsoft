@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_pagination %}
+
+{% block content %}
+    <h1>Welcome to vacancies list!</h1>
+    <table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Location</th>
+    </tr>
+    {% for data in page_obj %}
+        <tr>
+            <td>{% if data.is_from_monster and data.is_from_stepstone %}<strong>{% endif %}{{ data.title }}</strong></td>
+            <td>{% if data.is_from_monster and data.is_from_stepstone %}<strong>{% endif %}{{ data.company }}</strong></td>
+            <td>{% if data.is_from_monster and data.is_from_stepstone %}<strong>{% endif %}{{ data.location }}</strong></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    {% bootstrap_paginate page_obj url_view_name="list_vacancies" %}
+{% endblock %}
